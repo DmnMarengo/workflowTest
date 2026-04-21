@@ -11,6 +11,10 @@ on:
         required: true
         default: 'Valor default'
         type: string
+  push: 
+    branches: ["main"]
+  issues:
+    types: assigned
 jobs:
   mayor:
     if: ${{ inputs.edad >= 18 }}
@@ -22,7 +26,8 @@ jobs:
         run:  echo ${{ github.event_name }}
       - name: Mostrar Usuario
         run: echo ${{ github.actor }}
-      
+      - name: Retorno de Ref
+        run: echo $ {{ github.ref}} - ${{ github.repository}}
   menor:
     if: ${{ inputs.edad < 18 }}
     runs-on: ubuntu-latest
